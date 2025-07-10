@@ -17,11 +17,11 @@
         {
             "id": "persistent",
             "type": "select",
-            "name": "Alert style",
+            "name": "notification type",
             "default_value": false,
             "options": [
-                {"text": "Alert once", "value": false},
-                {"text": "Alert periodically until closed", "value": true}
+                {"text": "Ulauncher", "value": "ul"},
+                {"text": "Notification", "value": "ntf"}
             ]
         }
     ]

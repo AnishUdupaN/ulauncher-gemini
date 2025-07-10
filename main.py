@@ -16,16 +16,18 @@ class ClipboardHistoryExtension(Extension):
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
-        persistent = extension.preferences.get("persistent", False)
-        print(persistent)
+        pref = extension.preferences.get("persistent", False)
+        print(pref)
         stringinput = event.get_argument() or ""
-        items.append(ExtensionResultItem(
-            icon=os.path.join(os.getcwd(),'images/icon.png'),
-            name='Hello World',
-            description="Click to Open",
-            on_enter=RunScriptAction(f'xdg-open "Hello World"', [])
-        ))
-        return RenderResultListAction(items[:1])
-
+        if pref=="ul":
+            items.append(ExtensionResultItem(
+                icon=os.path.join(os.getcwd(),'images/icon.png'),
+                name=stringinput,
+                description="Click to Open",
+                on_enter=RunScriptAction(f'xdg-open "Hello World"', [])
+            ))
+            return RenderResultListAction(items[:1])
+        else:
+            pass
 if __name__ == '__main__':
     ClipboardHistoryExtension().run()
