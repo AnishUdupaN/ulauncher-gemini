@@ -29,13 +29,13 @@ class KeywordQueryEventListener(EventListener):
             icon=os.path.join(os.getcwd(),'images/icon.png'),
             name=stringinput,
             description=pref[0][1],
-            on_enter==ExtensionCustomAction({'query':stringinput,'ul':pref[0][0]}, keep_app_open=pref[0][0])
+            on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[0][0]}, keep_app_open=pref[0][0])
         ))
         items.append(ExtensionResultItem(
             icon=os.path.join(os.getcwd(),'images/icon.png'),
             name=stringinput,
             description=pref[1][1],
-            on_enter==ExtensionCustomAction({'query':stringinput,'ul':pref[1][0]}, keep_app_open=pref[1][0])
+            on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[1][0]}, keep_app_open=pref[1][0])
         ))
         return RenderResultListAction(items[:1])
 
