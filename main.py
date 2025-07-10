@@ -33,28 +33,36 @@ class PreferencesUpdateEventListener(EventListener):
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
-        pref = extension.preferences.get("preference", False)
+        fpref = extension.preferences.get("preference", False)
         print('Pref : ',pref)
-        
-        if pref == 'ul':
-            pref=[[True,"Click to Search Here"],[False,"Click to Notify the result.."]]
-        else:
-            pref=[[False,"Click to Notify the result!!"],[True,"Click to Search Here"]]
-        stringinput = event.get_argument() or ""
 
-        items.append(ExtensionResultItem(
-            icon=os.path.join(os.getcwd(),'icon.png'),
-            name=stringinput,
-            description=pref[0][1],
-            on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[0][0]}, keep_app_open=pref[0][0])
-        ))
-        items.append(ExtensionResultItem(
-            icon=os.path.join(os.getcwd(),'icon.png'),
-            name=stringinput,
-            description=pref[1][1],
-            on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[1][0]}, keep_app_open=pref[1][0])
-        ))
-        return RenderResultListAction(items[:2])
+        stringinput = event.get_argument() or ""
+        if fpref == 'man':
+            pref = extension.preferences.get("first_preference", "ul")
+            if pref=="ul":
+                pref=[[True,"Click to Search Here"],[False,"Click to Notify the result.."]]
+            else:
+                pref=[[False,"Click to Notify the result!!"],[True,"Click to Search Here"]]
+            items.append(ExtensionResultItem(
+                icon=os.path.join(os.getcwd(),'icon.png'),
+                name=stringinput,
+                description=pref[0][1],
+                on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[0][0],'auto':False}, keep_app_open=pref[0][0])
+            ))
+            items.append(ExtensionResultItem(
+                icon=os.path.join(os.getcwd(),'icon.png'),
+                name=stringinput,
+                description=pref[1][1],
+                on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[1][0],'auto':False}, keep_app_open=pref[1][0])
+            ))
+            return RenderResultListAction(items[:2])
+        else:
+            items.append(ExtensionResultItem(
+                icon=os.path.join(os.getcwd(),'icon.png'),
+                name=stringinput,
+                description='Click to Get Answer',
+                on_enter=ExtensionCustomAction({'query':stringinput,'ul':False,'auto':True}, keep_app_open=True)
+            ))
 
 
 class ItemEnterEventListener(EventListener):
@@ -65,18 +73,30 @@ class ItemEnterEventListener(EventListener):
         query=data['query']
         result=gemini.ask_gemini(query)
         #result='Google'
-        if data['ul']:
-            items.append(ExtensionResultItem(
-                icon='images/icon.png',
-                name=query+'\n'+result,
-                #on_enter=DoNothingAction()
-                on_enter=HideWindowAction()
-            ))
-            return RenderResultListAction(items[:1])
+        if data['auto']==False:
+            if data['ul']:
+                items.append(ExtensionResultItem(
+                    icon='images/icon.png',
+                    name=query+'\n'+result,
+                    on_enter=HideWindowAction()
+                ))
+                return RenderResultListAction(items[:1])
+            else:
+                notify2.init("Gemini Answers!")
+                notification = notify2.Notification(query,result)
+                notification.show()
         else:
-            notify2.init("Gemini Answers!")
-            notification = notify2.Notification(query,result)
-            notification.show()
+            if len(result.split())<=4:
+                items.append(ExtensionResultItem(
+                    icon='images/icon.png',
+                    name=query+'\n'+result,
+                    on_enter=HideWindowAction()
+                ))
+                return RenderResultListAction(items[:1])
+            else:
+                notify2.init("Gemini Answers!")
+                notification = notify2.Notification(query,result)
+                notification.show()
 
 
 

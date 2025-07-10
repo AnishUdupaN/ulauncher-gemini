@@ -20,9 +20,23 @@
             "name": "First Preference",
             "default_value": false,
             "options": [
+                {"text": "Automatic", "value": "auto"},
+                {"text": "Manual", "value": "man"}
+            ]
+        },
+        {
+            "id": "first_preference",
+            "type": "select",
+            "name": "Second Preference",
+            "default_value": "default",
+            "options": [
                 {"text": "Ulauncher", "value": "ul"},
                 {"text": "Notification", "value": "ntf"}
-            ]
+            ],
+            "condition": {
+                "depends_on": "preference",
+                "value": "manual"
+            }
         }
     ]
 }
