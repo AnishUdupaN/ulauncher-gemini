@@ -36,7 +36,7 @@ class KeywordQueryEventListener(EventListener):
         pref = extension.preferences.get("persistent", False)
         print('Pref : ',pref)
         
-        if pref is True:
+        if pref == 'ul':
             pref=[[True,"Click to Search Here"],[False,"Click to Notify the result.."]]
         else:
             pref=[[False,"Click to Notify the result!!"],[True,"Click to Search Here"]]
@@ -63,8 +63,8 @@ class ItemEnterEventListener(EventListener):
         print('EnterEventListener')
         data = event.get_data()
         query=data['query']
-        #result=gemini.ask_gemini(query)
-        result='Google'
+        result=gemini.ask_gemini(query)
+        #result='Google'
         if data['ul']:
             items.append(ExtensionResultItem(
                 icon='images/icon.png',
