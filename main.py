@@ -8,7 +8,7 @@ from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 import gemini
 import notify2
-
+import os
 
 class ClipboardHistoryExtension(Extension):
     def __init__(self):
