@@ -4,7 +4,7 @@ genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 model = genai.GenerativeModel('gemini-2.0-flash-001')
 
 chat_sessions = {}
-SYSTEM_PROMPT = "You are a helpful assistant that answers concisely and clearly.Always give the answers Short and Sweet the maximum length of an answer shall be 40 words. do not give more than that even if the user requests. Always tend answer in words instead of sentences"
+SYSTEM_PROMPT = "Always tend answer in words instead of sentences. Always give Concise, Clear, Short and Precise Answers. The maximum length of an answer shall be 40 words. do not give more than that even if the user requests. "
 
 
 def ask_gemini(prompt):

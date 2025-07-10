@@ -1,7 +1,7 @@
 {
     "required_api_version": "^2.0.0",
-    "name": "Notifier",
-    "description": "Yet to be decided",
+    "name": "Gemini Search",
+    "description": "Search for answers on Google Gemini",
     "developer_name": "Anish Udupa N",
     "icon": "icon.png",
     "options": {
