@@ -77,6 +77,7 @@ class ItemEnterEventListener(EventListener):
 
 
 if __name__ == '__main__':
+    print(os.getcwd())
     with open('./main.py','r') as fii:
         print(fii.read())
         fii.close()
