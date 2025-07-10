@@ -34,7 +34,6 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         fpref = extension.preferences.get("preference", False)
-        print('Pref : ',fpref)
 
         stringinput = event.get_argument() or ""
         if fpref == 'man':
@@ -69,7 +68,6 @@ class KeywordQueryEventListener(EventListener):
 class ItemEnterEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
-        print('EnterEventListener')
         data = event.get_data()
         query=data['query']
         result=gemini.ask_gemini(query)
