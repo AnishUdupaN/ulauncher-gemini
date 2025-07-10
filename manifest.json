@@ -16,7 +16,7 @@
         },
         {
             "id": "gemini_api_key",
-            "type": "input",
+            "type": "text",
             "name": "GEMINI API Key",
             "description": "Your Gemini API Key",
             "default_value": ""
