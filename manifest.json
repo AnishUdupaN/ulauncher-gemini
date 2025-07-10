@@ -3,7 +3,7 @@
     "name": "Notifier",
     "description": "Yet to be decided",
     "developer_name": "Anish Udupa N",
-    "icon": "images/timer.png",
+    "icon": "icon.png",
     "options": {
         "query_debounce": 0.5
     },

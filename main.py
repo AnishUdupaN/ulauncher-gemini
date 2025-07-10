@@ -40,13 +40,13 @@ class KeywordQueryEventListener(EventListener):
         stringinput = event.get_argument() or ""
 
         items.append(ExtensionResultItem(
-            icon=os.path.join(os.getcwd(),'images/icon.png'),
+            icon=os.path.join(os.getcwd(),'icon.png'),
             name=stringinput,
             description=pref[0][1],
             on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[0][0]}, keep_app_open=pref[0][0])
         ))
         items.append(ExtensionResultItem(
-            icon=os.path.join(os.getcwd(),'images/icon.png'),
+            icon=os.path.join(os.getcwd(),'icon.png'),
             name=stringinput,
             description=pref[1][1],
             on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[1][0]}, keep_app_open=pref[1][0])
@@ -78,7 +78,7 @@ class ItemEnterEventListener(EventListener):
 
 if __name__ == '__main__':
     print(os.getcwd())
-    with open('./main.py','r') as fii:
+    with open('main.py','r') as fii:
         print(fii.read())
         fii.close()
     MyExtension().run()
