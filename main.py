@@ -10,13 +10,14 @@ import gemini
 import notify2
 import os
  
-class ClipboardHistoryExtension(Extension):
+class MyExtension(Extension):
     def __init__(self):
-        super(ClipboardHistoryExtension, self).__init__()
+        super(MyExtension, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
         self.subscribe(PreferencesEvent, PreferencesEventListener())
         self.subscribe(PreferencesUpdateEvent, PreferencesUpdateEventListener())
+
 
 class PreferencesEventListener(EventListener):
     def on_event(self, event, extension):
@@ -79,4 +80,4 @@ if __name__ == '__main__':
     with open('./main.py','r') as fii:
         print(fii.read())
         fii.close()
-    ClipboardHistoryExtension().run()
+    MyExtension().run()
