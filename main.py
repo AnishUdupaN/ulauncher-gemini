@@ -22,7 +22,7 @@ class KeywordQueryEventListener(EventListener):
             icon=os.path.join(os.getcwd(),'images/icon.png'),
             name='Hello World',
             description="Click to Open",
-            on_enter=RunScriptAction(f'xdg-open "{lines[i]}"', [])
+            on_enter=RunScriptAction(f'xdg-open "Hello World"', [])
         ))
         return RenderResultListAction(items[:1])
 
