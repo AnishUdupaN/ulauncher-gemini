@@ -1,5 +1,3 @@
-import subprocess
-import os
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
 from ulauncher.api.shared.event import KeywordQueryEvent, ItemEnterEvent
@@ -7,6 +5,10 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.RunScriptAction import RunScriptAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
+from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
+import gemini
+import notify2
+
 
 class ClipboardHistoryExtension(Extension):
     def __init__(self):
@@ -17,17 +19,47 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         pref = extension.preferences.get("persistent", False)
-        print(pref)
+        if pref is True:
+            pref=[[True,"Click to Search Here"],[False,"Click to Notify the result"]]
+        else:
+            pref=[[False,"Click to Notify the result"],[True,"Click to Search Here"]]
         stringinput = event.get_argument() or ""
-        if pref=="ul":
+
+        items.append(ExtensionResultItem(
+            icon=os.path.join(os.getcwd(),'images/icon.png'),
+            name=stringinput,
+            description=pref[0][1],
+            on_enter==ExtensionCustomAction({'query':stringinput,'ul':pref[0][0]}, keep_app_open=pref[0][0])
+        ))
+        items.append(ExtensionResultItem(
+            icon=os.path.join(os.getcwd(),'images/icon.png'),
+            name=stringinput,
+            description=pref[1][1],
+            on_enter==ExtensionCustomAction({'query':stringinput,'ul':pref[1][0]}, keep_app_open=pref[1][0])
+        ))
+        return RenderResultListAction(items[:1])
+
+
+class ItemEnterEventListener(EventListener):
+    def on_event(self, event, extension):
+        items = []
+        print('EnterEventListener')
+        data = event.get_data()
+        query=data['query']
+        result=gemini.ask_gemini(query)
+        if data['ul']:
             items.append(ExtensionResultItem(
-                icon=os.path.join(os.getcwd(),'images/icon.png'),
-                name=stringinput,
-                description="Click to Open",
-                on_enter=RunScriptAction(f'xdg-open "Hello World"', [])
+                icon='./images/icon.png',
+                name=query+'\n'+result,
+                on_enter=DoNothingAction()
             ))
             return RenderResultListAction(items[:1])
         else:
-            pass
+            notify2.init("Gemini Answers!")
+            notification = notify2.Notification(query,result)
+            notification.show()
+
+
+
 if __name__ == '__main__':
     ClipboardHistoryExtension().run()
