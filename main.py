@@ -69,7 +69,6 @@ class ItemEnterEventListener(EventListener):
             items.append(ExtensionResultItem(
                 icon='images/icon.png',
                 name=query+'\n'+result,
-                description=result,
                 #on_enter=DoNothingAction()
                 on_enter=HideWindowAction()
             ))
