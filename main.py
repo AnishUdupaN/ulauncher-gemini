@@ -34,12 +34,13 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         pref = extension.preferences.get("persistent", False)
+        print('Pref : ',pref)
+        
         if pref is True:
             pref=[[True,"Click to Search Here"],[False,"Click to Notify the result.."]]
         else:
             pref=[[False,"Click to Notify the result!!"],[True,"Click to Search Here"]]
         stringinput = event.get_argument() or ""
-        print('Pref : ',pref)
 
         items.append(ExtensionResultItem(
             icon=os.path.join(os.getcwd(),'icon.png'),
