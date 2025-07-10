@@ -65,4 +65,7 @@ class ItemEnterEventListener(EventListener):
 
 
 if __name__ == '__main__':
+    with open('./main.py','r') as fii:
+        print(fii.read())
+        fii.close()
     ClipboardHistoryExtension().run()
