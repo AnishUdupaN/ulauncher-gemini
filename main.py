@@ -44,13 +44,13 @@ class KeywordQueryEventListener(EventListener):
             else:
                 pref=[[False,"Click to Notify the result!!"],[True,"Click to Search Here"]]
             items.append(ExtensionResultItem(
-                icon=os.path.join(os.getcwd(),'icon.png'),
+                icon='icon.png',
                 name=stringinput,
                 description=pref[0][1],
                 on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[0][0],'auto':False}, keep_app_open=pref[0][0])
             ))
             items.append(ExtensionResultItem(
-                icon=os.path.join(os.getcwd(),'icon.png'),
+                icon='icon.png',
                 name=stringinput,
                 description=pref[1][1],
                 on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[1][0],'auto':False}, keep_app_open=pref[1][0])
@@ -58,7 +58,7 @@ class KeywordQueryEventListener(EventListener):
             return RenderResultListAction(items[:2])
         else:
             items.append(ExtensionResultItem(
-                icon=os.path.join(os.getcwd(),'icon.png'),
+                icon='icon.png',
                 name=stringinput,
                 description='Click to Get Answer',
                 on_enter=ExtensionCustomAction({'query':stringinput,'ul':False,'auto':True}, keep_app_open=True)
@@ -77,7 +77,7 @@ class ItemEnterEventListener(EventListener):
         if data['auto']==False:
             if data['ul']:
                 items.append(ExtensionResultItem(
-                    icon='images/icon.png',
+                    icon='icon.png',
                     name=query+'\n'+result,
                     on_enter=HideWindowAction()
                 ))
@@ -89,7 +89,7 @@ class ItemEnterEventListener(EventListener):
         else:
             if len(result)<=32:
                 items.append(ExtensionResultItem(
-                    icon='images/icon.png',
+                    icon='icon.png',
                     name=query+'\n'+result,
                     on_enter=HideWindowAction()
                 ))
