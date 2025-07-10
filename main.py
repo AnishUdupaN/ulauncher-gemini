@@ -63,6 +63,7 @@ class KeywordQueryEventListener(EventListener):
                 description='Click to Get Answer',
                 on_enter=ExtensionCustomAction({'query':stringinput,'ul':False,'auto':True}, keep_app_open=True)
             ))
+            return RenderResultListAction(items[:1])
 
 
 class ItemEnterEventListener(EventListener):
