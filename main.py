@@ -17,6 +17,17 @@ class ClipboardHistoryExtension(Extension):
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
         self.subscribe(PreferencesEvent, PreferencesEventListener())
         self.subscribe(PreferencesUpdateEvent, PreferencesUpdateEventListener())
+
+class PreferencesEventListener(EventListener):
+    def on_event(self, event, extension):
+        extension.preferences.update(event.preferences)
+
+
+class PreferencesUpdateEventListener(EventListener):
+    def on_event(self, event, extension):
+        extension.preferences[event.id] = event.new_value
+
+
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
