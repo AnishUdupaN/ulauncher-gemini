@@ -9,7 +9,7 @@ from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAct
 import gemini
 import notify2
 import os
-
+ 
 class ClipboardHistoryExtension(Extension):
     def __init__(self):
         super(ClipboardHistoryExtension, self).__init__()
