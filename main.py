@@ -17,6 +17,7 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         persistent = extension.preferences.get("persistent", False)
+        print(persistent)
         stringinput = event.get_argument() or ""
         items.append(ExtensionResultItem(
             icon=os.path.join(os.getcwd(),'images/icon.png'),
