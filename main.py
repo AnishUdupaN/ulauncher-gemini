@@ -64,7 +64,7 @@ class ItemEnterEventListener(EventListener):
         result='Google'
         if data['ul']:
             items.append(ExtensionResultItem(
-                icon='./images/icon.png',
+                icon='images/icon.png',
                 name=query+'\n'+result,
                 on_enter=DoNothingAction()
             ))
