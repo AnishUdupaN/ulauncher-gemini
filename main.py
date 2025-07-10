@@ -39,6 +39,7 @@ class KeywordQueryEventListener(EventListener):
         else:
             pref=[[False,"Click to Notify the result!!"],[True,"Click to Search Here"]]
         stringinput = event.get_argument() or ""
+        print('Pref : ',pref)
 
         items.append(ExtensionResultItem(
             icon=os.path.join(os.getcwd(),'icon.png'),
