@@ -11,13 +11,13 @@
         {
             "id": "keyword",
             "type": "keyword",
-            "name": "Notifier",
-            "default_value": "nt"
+            "name": "Gemini",
+            "default_value": "gm"
         },
         {
             "id": "preference",
             "type": "select",
-            "name": "First Preference",
+            "name": "Where to answer?",
             "default_value": false,
             "options": [
                 {"text": "Automatic", "value": "auto"},
@@ -27,7 +27,7 @@
         {
             "id": "first_preference",
             "type": "select",
-            "name": "Second Preference",
+            "name": "First Preference",
             "default_value": "default",
             "options": [
                 {"text": "Ulauncher", "value": "ul"},
