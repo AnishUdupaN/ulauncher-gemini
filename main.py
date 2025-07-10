@@ -34,7 +34,7 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         fpref = extension.preferences.get("preference", False)
-        print('Pref : ',pref)
+        print('Pref : ',fpref)
 
         stringinput = event.get_argument() or ""
         if fpref == 'man':
