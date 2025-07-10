@@ -11,6 +11,7 @@ class ClipboardHistoryExtension(Extension):
     def __init__(self):
         super(ClipboardHistoryExtension, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
+        persistent = self.preferences["persistent"]
 
 
 
@@ -19,7 +20,6 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         stringinput = event.get_argument() or ""
-        persistent = self.preferences["persistent"]
         items.append(ExtensionResultItem(
             icon=os.path.join(os.getcwd(),'images/icon.png'),
             name='Hello World',
