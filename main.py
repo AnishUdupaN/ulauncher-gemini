@@ -87,7 +87,7 @@ class ItemEnterEventListener(EventListener):
                 notification = notify2.Notification(query,result)
                 notification.show()
         else:
-            if len(result.split())<=4:
+            if len(result)<=32:
                 items.append(ExtensionResultItem(
                     icon='images/icon.png',
                     name=query+'\n'+result,
