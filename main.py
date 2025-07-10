@@ -12,7 +12,7 @@ import os
 
 class ClipboardHistoryExtension(Extension):
     def __init__(self):
-        super(ClipboardHistoryExtension, self).__init__()]
+        super(ClipboardHistoryExtension, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
         self.subscribe(ItemEnterEvent, ItemEnterEventListener())
         self.subscribe(PreferencesEvent, PreferencesEventListener())
