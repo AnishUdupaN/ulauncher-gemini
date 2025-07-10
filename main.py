@@ -46,7 +46,8 @@ class ItemEnterEventListener(EventListener):
         print('EnterEventListener')
         data = event.get_data()
         query=data['query']
-        result=gemini.ask_gemini(query)
+        #result=gemini.ask_gemini(query)
+        result='Google'
         if data['ul']:
             items.append(ExtensionResultItem(
                 icon='./images/icon.png',
