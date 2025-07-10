@@ -22,9 +22,9 @@ class KeywordQueryEventListener(EventListener):
         items = []
         pref = extension.preferences.get("persistent", False)
         if pref is True:
-            pref=[[True,"Click to Search Here"],[False,"Click to Notify the result"]]
+            pref=[[True,"Click to Search Here"],[False,"Click to Notify the result.."]]
         else:
-            pref=[[False,"Click to Notify the result"],[True,"Click to Search Here"]]
+            pref=[[False,"Click to Notify the result!!"],[True,"Click to Search Here"]]
         stringinput = event.get_argument() or ""
 
         items.append(ExtensionResultItem(
