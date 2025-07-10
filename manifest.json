@@ -15,6 +15,13 @@
             "default_value": "gm"
         },
         {
+            "id": "gemini_api_key",
+            "type": "input",
+            "name": "GEMINI API Key",
+            "description": "Your Gemini API Key",
+            "default_value": ""
+        },
+        {
             "id": "preference",
             "type": "select",
             "name": "Where to answer?",
@@ -37,13 +44,6 @@
                 "depends_on": "preference",
                 "value": "manual"
             }
-        },
-        {
-      "id": "gemini_api_key",
-      "type": "input",
-      "name": "GEMINI API Key",
-      "description": "Your Gemini API Key",
-      "default_value": ""
-    }
+        }
     ]
 }
