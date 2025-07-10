@@ -34,7 +34,7 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         fpref = extension.preferences.get("preference", False)
-
+        api_key=extension.preferences.get("gemini_api_key")
         stringinput = event.get_argument() or ""
         if fpref == 'man':
             pref = extension.preferences.get("first_preference", "ul")
@@ -46,13 +46,13 @@ class KeywordQueryEventListener(EventListener):
                 icon='icon.png',
                 name=stringinput,
                 description=pref[0][1],
-                on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[0][0],'auto':False}, keep_app_open=pref[0][0])
+                on_enter=ExtensionCustomAction({'api_key':api_key,'query':stringinput,'ul':pref[0][0],'auto':False}, keep_app_open=pref[0][0])
             ))
             items.append(ExtensionResultItem(
                 icon='icon.png',
                 name=stringinput,
                 description=pref[1][1],
-                on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[1][0],'auto':False}, keep_app_open=pref[1][0])
+                on_enter=ExtensionCustomAction({'api_key':api_key,'query':stringinput,'ul':pref[1][0],'auto':False}, keep_app_open=pref[1][0])
             ))
             return RenderResultListAction(items[:2])
         else:
@@ -60,7 +60,7 @@ class KeywordQueryEventListener(EventListener):
                 icon='icon.png',
                 name=stringinput,
                 description='Click to Get Answer',
-                on_enter=ExtensionCustomAction({'query':stringinput,'ul':False,'auto':True}, keep_app_open=True)
+                on_enter=ExtensionCustomAction({'api_key':api_key,'query':stringinput,'ul':False,'auto':True}, keep_app_open=True)
             ))
             return RenderResultListAction(items[:1])
 
@@ -70,7 +70,8 @@ class ItemEnterEventListener(EventListener):
         items = []
         data = event.get_data()
         query=data['query']
-        result=gemini.ask_gemini(query)
+        api_key=data['api_key']
+        result=gemini.ask_gemini(api_key,query)
         #result='Google'
         if data['auto']==False:
             if data['ul']:
