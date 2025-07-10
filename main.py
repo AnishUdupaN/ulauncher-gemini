@@ -7,18 +7,16 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.RunScriptAction import RunScriptAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
+
 class ClipboardHistoryExtension(Extension):
     def __init__(self):
         super(ClipboardHistoryExtension, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
-        persistent = self.preferences["persistent"]
-
-
-
 
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
+        persistent = extension.preferences.get("persistent", False)
         stringinput = event.get_argument() or ""
         items.append(ExtensionResultItem(
             icon=os.path.join(os.getcwd(),'images/icon.png'),
