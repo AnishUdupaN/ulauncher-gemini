@@ -51,7 +51,7 @@ class KeywordQueryEventListener(EventListener):
             description=pref[1][1],
             on_enter=ExtensionCustomAction({'query':stringinput,'ul':pref[1][0]}, keep_app_open=pref[1][0])
         ))
-        return RenderResultListAction(items[:1])
+        return RenderResultListAction(items[:2])
 
 
 class ItemEnterEventListener(EventListener):
