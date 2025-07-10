@@ -33,7 +33,7 @@ class PreferencesUpdateEventListener(EventListener):
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
-        pref = extension.preferences.get("persistent", False)
+        pref = extension.preferences.get("preference", False)
         print('Pref : ',pref)
         
         if pref == 'ul':
@@ -69,7 +69,8 @@ class ItemEnterEventListener(EventListener):
             items.append(ExtensionResultItem(
                 icon='images/icon.png',
                 name=query+'\n'+result,
-                on_enter=DoNothingAction()
+                #on_enter=DoNothingAction()
+                on_enter=HideWindowAction()
             ))
             return RenderResultListAction(items[:1])
         else:

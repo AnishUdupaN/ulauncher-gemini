@@ -15,9 +15,9 @@
             "default_value": "nt"
         },
         {
-            "id": "persistent",
+            "id": "preference",
             "type": "select",
-            "name": "notification type",
+            "name": "First Preference",
             "default_value": false,
             "options": [
                 {"text": "Ulauncher", "value": "ul"},
